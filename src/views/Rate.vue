@@ -40,17 +40,19 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" icon="Search" circle @click="getRate"></el-button>
+            <el-button type="success" icon="Search" circle @click="getRate"></el-button>
           </el-form-item>
 
         </el-form>
 
-        <el-divider />
+        <el-divider v-if="rateData"></el-divider>
 
-        <div class="div-rate">
-          <el-text type="primary" tag="b" class="rate">111</el-text>
-          <br />
-          <el-text type="info">123</el-text>
+        <div class="div-rate" v-if="rateData">
+          <el-text type="danger" tag="b" class="rate-1">1</el-text>
+          <el-text type="primary" tag="b" class="rate-2">&nbsp;{{ transCur }}</el-text>
+          <el-text class="rate-1" style="color: #000;">&nbsp;=&nbsp;</el-text>
+          <el-text type="danger" tag="b" class="rate-1">{{ rateData }}</el-text>
+          <el-text type="primary" tag="b" class="rate-2">&nbsp;{{ baseCur }}</el-text>
         </div>
       </el-card>
     </el-col>
@@ -88,9 +90,6 @@ export default {
   },
   created: function() {
     this.rawDate = new Date()
-  },
-  mounted: function() {
-    this.getRate()
   },
   methods: {
     getRate() {
@@ -140,8 +139,16 @@ export default {
 
 .div-rate
   text-align center
+  margin-top -0.25em
 
-.rate
-  font-size 4em
+.div-rate-2
+  text-align center
+  margin-top 0.5em
+
+.rate-1
+  font-size 2em
+
+.rate-2
+  font-size 1em
 </style>
   
