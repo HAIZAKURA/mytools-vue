@@ -6,15 +6,14 @@ const request = axios.create({
     timeout: 6000, //设置超时
 })
 
-/*------------- 拦截器---------*/
-    // 请求拦截器
+// 请求拦截器
 request.interceptors.request.use(function (config) {
     return config
 }, function (err) {
     return Promise.reject(err)
 })
 
-    // 响应拦截器
+// 响应拦截器
 request.interceptors.response.use((response) => {
     return response
 },(error) => {
