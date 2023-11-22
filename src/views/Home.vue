@@ -1,6 +1,6 @@
 <template>
   <el-space wrap alignment="stretch" size="default">
-    <el-card v-for="item in cardList" :key="index" shadow="always" class="card">
+    <el-card v-for="item in cardList" shadow="always" class="card">
       <template #header>
           <div class="card-header">
             <el-text tag="b" size="large" class="card-header-title" @click="goTo(item.name)">{{ item.title }}</el-text>
