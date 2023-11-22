@@ -42,7 +42,7 @@ export default {
 .card-header
   display flex
   justify-content space-between
-  align-item center
+  align-items center
   cursor pointer
 
 .card-header-title
