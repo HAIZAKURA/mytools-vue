@@ -42,8 +42,6 @@ export default {
 .card
   @media (min-width 640px)
     width 30vw
-  @media (max-width 639px)
-    width 90vw
     
 
 .card-header
