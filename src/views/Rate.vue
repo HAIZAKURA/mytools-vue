@@ -1,62 +1,60 @@
 <template>
-  <el-row :gutter="12">
-    <el-col :span="8" :offset="8">
-      <el-card class="box-card">
-        <template #header>
-          <div class="card-header">
-            <el-text class="card-header-title" tag="b" @click="getRate">💰 Exchange Rate Query</el-text>
-          </div>
-        </template>
-        <el-form size="large" label-position="left" label-width="150px">
+  <div style="display: flex;">
+    <el-card class="box-card">
+    <template #header>
+      <div class="card-header">
+        <el-text class="card-header-title" tag="b" @click="getRate">💰 Exchange Rate Query</el-text>
+      </div>
+    </template>
+    <el-form size="large" label-position="left" label-width="150px">
 
-          <el-form-item label="Transaction Currency">
-            <el-select v-model="transCur" placeholder="Pick a Transaction Currency" filterable>
-              <el-option
-                v-for="item in transCurList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          </el-form-item>
+      <el-form-item label="Transaction Currency">
+        <el-select v-model="transCur" placeholder="Pick a Transaction Currency" filterable>
+          <el-option
+            v-for="item in transCurList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
 
-          <el-form-item label="Base Currency">
-            <el-select v-model="baseCur" placeholder="Pick a Base Currency" filterable>
-              <el-option
-                v-for="item in baseCurList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          </el-form-item>
+      <el-form-item label="Base Currency">
+        <el-select v-model="baseCur" placeholder="Pick a Base Currency" filterable>
+          <el-option
+            v-for="item in baseCurList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
 
-          <el-form-item label="Settlement Date">
-            <el-date-picker
-              v-model="rawDate"
-              type="date"
-              placeholder="Pick a Settlement Date"
-            />
-          </el-form-item>
+      <el-form-item label="Settlement Date">
+        <el-date-picker
+          v-model="rawDate"
+          type="date"
+          placeholder="Pick a Settlement Date"
+        />
+      </el-form-item>
 
-          <el-form-item>
-            <el-button type="success" icon="Search" circle @click="getRate"></el-button>
-          </el-form-item>
+      <el-form-item>
+        <el-button type="success" icon="Search" circle @click="getRate"></el-button>
+      </el-form-item>
 
-        </el-form>
+    </el-form>
 
-        <el-divider v-if="rateData"></el-divider>
+    <el-divider v-if="rateData"></el-divider>
 
-        <div class="div-rate" v-if="rateData">
-          <el-text type="danger" tag="b" class="rate-1">1</el-text>
-          <el-text type="primary" tag="b" class="rate-2">&nbsp;{{ transCur }}</el-text>
-          <el-text class="rate-1" style="color: #000;">&nbsp;=&nbsp;</el-text>
-          <el-text type="danger" tag="b" class="rate-1">{{ rateData }}</el-text>
-          <el-text type="primary" tag="b" class="rate-2">&nbsp;{{ baseCur }}</el-text>
-        </div>
-      </el-card>
-    </el-col>
-  </el-row>
+    <div class="div-rate" v-if="rateData">
+      <el-text type="danger" tag="b" class="rate-1">1</el-text>
+      <el-text type="primary" tag="b" class="rate-2">&nbsp;{{ transCur }}</el-text>
+      <el-text class="rate-1" style="color: #000;">&nbsp;=&nbsp;</el-text>
+      <el-text type="danger" tag="b" class="rate-1">{{ rateData }}</el-text>
+      <el-text type="primary" tag="b" class="rate-2">&nbsp;{{ baseCur }}</el-text>
+    </div>
+  </el-card>
+  </div>
 </template>
 
 <script>
@@ -133,6 +131,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.box-card
+  @media (min-width: 640px)
+    width 25em
+    margin auto
+  @media (max-width: 639px)
+    margin auto
+
 .card-header-title
   color #000
   font-size 1.5em
