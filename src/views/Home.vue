@@ -20,12 +20,14 @@
 export default {
   data() {
     return {
-      cardList : [{
-        title : '💰 Exchange Rate Query',
-        name: 'Rate',
-        url : 'https://tools.nya.run/rate',
-        desc : 'Exchange rates provided on this website are from UnionPay System.'
-      }]
+      cardList : [
+        {
+          title : '💰 Exchange Rate Query',
+          name: 'Rate',
+          url : 'https://tools.nya.run/rate',
+          desc : 'Exchange rates provided on this website are from UnionPay System.'
+        }
+      ]
     }
   },
   methods: {
@@ -38,7 +40,12 @@ export default {
 
 <style lang="stylus" scoped>
 .card
-  width 20em
+  @media (min-width 640px)
+    width 30vw
+  @media (max-width 639px)
+    width 90vw
+    
+
 .card-header
   display flex
   justify-content space-between
