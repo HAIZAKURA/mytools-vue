@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode dev",
-    "pro": "vite --mode pro",
-    "build:dev": "vite build --mode dev",
-    "build:pro": "vite build --mode pro",
-    "preview": "vite preview"
+    "dev": "rsbuild dev --env-mode development",
+    "pro": "rsbuild dev --env-mode production",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
@@ -18,9 +17,10 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.6.2",
+    "@rsbuild/core": "^1.3.14",
+    "@rsbuild/plugin-stylus": "^1.1.1",
+    "@rsbuild/plugin-vue": "^1.0.7",
     "stylus": "^0.62.0",
-    "stylus-loader": "^7.1.3",
-    "vite": "^4.5.14"
+    "stylus-loader": "^7.1.3"
   }
 }

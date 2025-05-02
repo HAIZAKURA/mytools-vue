@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const request = axios.create({
     //根据运行环境来选择相应接口地址
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: import.meta.env.PUBLIC_API_URL,
     timeout: 6000, //设置超时
 })
 
