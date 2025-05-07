@@ -15,4 +15,11 @@ export default defineConfig({
             index: './src/main.js',
         },
     },
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3010',
+            },
+        }
+    }
 });

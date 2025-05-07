@@ -1,9 +1,8 @@
 import axios from 'axios'
 
 const request = axios.create({
-    //根据运行环境来选择相应接口地址
-    baseURL: import.meta.env.PUBLIC_API_URL,
-    timeout: 6000, //设置超时
+    //设置超时
+    timeout: 6000,
 })
 
 // 请求拦截器
