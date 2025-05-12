@@ -1,7 +1,7 @@
 {
   "name": "mytools-vue",
   "private": true,
-  "version": "2.2",
+  "version": "2.3",
   "type": "module",
   "scripts": {
     "dev": "rsbuild dev --env-mode development",
