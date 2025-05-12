@@ -53,6 +53,22 @@
       <el-text type="danger" tag="b" class="rate-1">{{ rateData }}</el-text>
       <el-text type="primary" tag="b" class="rate-2">&nbsp;{{ baseCur }}</el-text>
     </div>
+
+    <el-divider v-if="rateData"></el-divider>
+
+    <el-form v-if="rateData">
+      <el-form-item>
+        <el-input v-model="transNum" @input="calcRate()" clearable>
+          <template #append>{{ transCur }}</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input v-model="baseNum">
+          <template #append>{{ baseCur }}</template>
+        </el-input>
+      </el-form-item>
+    </el-form>
+
   </el-card>
   </div>
 </template>
@@ -84,6 +100,8 @@ export default {
       baseCur: 'CNY',
       rawDate: '',
       rateData: '',
+      transNum: 100,
+      baseNum: 0,
     };
   },
   created: function() {
@@ -96,11 +114,19 @@ export default {
       month = month < 10 ? '0' + month : month;
       let day = this.rawDate.getDate();
       day = day < 10 ? '0' + day : day;
-      request.get('/api/rate', { params: { year: year, month: month, day: day, transCur: this.transCur, baseCur: this.baseCur } })
+      const params = {
+        year: year,
+        month: month,
+        day: day,
+        transCur: this.transCur,
+        baseCur: this.baseCur,
+      };
+      request.get('/api/rate', { params: params })
         .then(res => {
           this.transCur = res.data.data.transCur;
           this.baseCur = res.data.data.baseCur;
           this.rateData = res.data.data.rateData;
+          this.calcRate();
         })
         .catch(err => {
           if (err.status && err.response) {
@@ -114,6 +140,11 @@ export default {
               type: 'error',
             });
         })
+    },
+    calcRate() {
+      let rate = parseFloat(this.rateData);
+      this.baseNum = this.transNum * rate;
+      this.baseNum = this.baseNum.toFixed(2);
     },
   },
 };
