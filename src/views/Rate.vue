@@ -58,8 +58,8 @@
 </template>
 
 <script>
-import request from '../utils/request'
-import { ElMessage } from 'element-plus'
+import request from '../utils/request';
+import { ElMessage } from 'element-plus';
 
 export default {
   data() {
@@ -83,51 +83,40 @@ export default {
       transCur: 'JPY',
       baseCur: 'CNY',
       rawDate: '',
-      rateData: ''
-    }
+      rateData: '',
+    };
   },
   created: function() {
-    this.rawDate = new Date()
+    this.rawDate = new Date();
   },
   methods: {
     getRate() {
-      let year = this.rawDate.getFullYear()
-      let month = this.rawDate.getMonth() + 1
-      month = month < 10 ? '0' + month : month
-      let day = this.rawDate.getDate()
-      day = day < 10 ? '0' + day : day
+      let year = this.rawDate.getFullYear();
+      let month = this.rawDate.getMonth() + 1;
+      month = month < 10 ? '0' + month : month;
+      let day = this.rawDate.getDate();
+      day = day < 10 ? '0' + day : day;
       request.get('/api/rate', { params: { year: year, month: month, day: day, transCur: this.transCur, baseCur: this.baseCur } })
         .then(res => {
-          if (res.data.code == 200) {
-            this.transCur = res.data.data.transCur
-            this.baseCur = res.data.data.baseCur
-            this.rateData = res.data.data.rateData
-          } else if (res.data.code == 400) {
-            ElMessage({
-              message: '400 Bad Request',
-              type: 'error',
-            })
-          } else if (res.data.code == 502) {
-            ElMessage({
-              message: '502 Bad Gateway',
-              type: 'error',
-            })
-          } else {
-            ElMessage({
-              message: 'Undefined Error',
-              type: 'error',
-            })
-          }
+          this.transCur = res.data.data.transCur;
+          this.baseCur = res.data.data.baseCur;
+          this.rateData = res.data.data.rateData;
         })
         .catch(err => {
-          ElMessage({
+          if (err.status && err.response) {
+            ElMessage({
+              message: err.message,
+              type: 'error',
+            });
+          } else
+            ElMessage({
               message: err,
               type: 'error',
-            })
+            });
         })
     }
-  }
-}
+  },
+};
 </script>
 
 <style lang="stylus" scoped>
