@@ -26,16 +26,16 @@ export default {
           name: 'Rate',
           url : 'https://tools.nya.run/rate',
           desc : 'Exchange rates provided on this website are from UnionPay System.'
-        }
-      ]
-    }
+        },
+      ],
+    };
   },
   methods: {
       goTo(val) {
-          this.$router.push({ name: val })
+          this.$router.push({ name: val });
       }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
