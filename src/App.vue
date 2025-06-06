@@ -22,10 +22,10 @@
 <script>
 export default {
   methods: {
-      goBackHome() {
-          this.$router.push({ name: 'Home' });
-      },
-  }
+    goBackHome() {
+      this.$router.push({ name: 'Home' });
+    },
+  },
 };
 </script>
 

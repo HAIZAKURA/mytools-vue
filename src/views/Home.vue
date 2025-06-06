@@ -20,21 +20,21 @@
 export default {
   data() {
     return {
-      cardList : [
+      cardList: [
         {
-          title : '💰 Exchange Rate Query',
+          title: '💰 Exchange Rate Query',
           name: 'Rate',
-          url : 'https://tools.nya.run/rate',
-          desc : 'Exchange rates provided on this website are from UnionPay System.'
+          url: 'https://tools.nya.run/rate',
+          desc: 'Exchange rates provided on this website are from UnionPay System.',
         },
       ],
     };
   },
   methods: {
-      goTo(val) {
-          this.$router.push({ name: val });
-      }
-  }
+    goTo(val) {
+      this.$router.push({ name: val });
+    },
+  },
 };
 </script>
 

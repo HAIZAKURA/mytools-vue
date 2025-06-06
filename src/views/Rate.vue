@@ -74,8 +74,8 @@
 </template>
 
 <script>
-import request from '../utils/request';
 import { ElMessage } from 'element-plus';
+import request from '../utils/request';
 
 export default {
   data() {
@@ -104,16 +104,16 @@ export default {
       baseNum: 0,
     };
   },
-  created: function() {
+  created: function () {
     this.rawDate = new Date();
   },
   methods: {
     getRate() {
-      let year = this.rawDate.getFullYear();
+      const year = this.rawDate.getFullYear();
       let month = this.rawDate.getMonth() + 1;
-      month = month < 10 ? '0' + month : month;
+      month = month < 10 ? `0${month}` : month;
       let day = this.rawDate.getDate();
-      day = day < 10 ? '0' + day : day;
+      day = day < 10 ? `0${day}` : day;
       const params = {
         year: year,
         month: month,
@@ -121,14 +121,15 @@ export default {
         transCur: this.transCur,
         baseCur: this.baseCur,
       };
-      request.get('/api/rate', { params: params })
-        .then(res => {
+      request
+        .get('/api/rate', { params: params })
+        .then((res) => {
           this.transCur = res.data.data.transCur;
           this.baseCur = res.data.data.baseCur;
           this.rateData = res.data.data.rateData;
           this.calcRate();
         })
-        .catch(err => {
+        .catch((err) => {
           if (err.status && err.response) {
             ElMessage({
               message: err.message,
@@ -139,10 +140,10 @@ export default {
               message: err,
               type: 'error',
             });
-        })
+        });
     },
     calcRate() {
-      let rate = parseFloat(this.rateData);
+      const rate = Number.parseFloat(this.rateData);
       this.baseNum = this.transNum * rate;
       this.baseNum = this.baseNum.toFixed(2);
     },
