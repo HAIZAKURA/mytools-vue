@@ -10,7 +10,9 @@
           <el-text line-clamp="2">{{ item.desc }}</el-text>
         </div>
         <div class="card-bottom">
-          <el-text type="info" size="small">{{ item.url }}</el-text>
+          <el-link :href="item.url" :underline="false">
+            <el-text type="info" size="small">{{ currentUrl + item.url }}</el-text>
+          </el-link>
         </div>
     </el-card>
   </el-space>
@@ -24,10 +26,11 @@ export default {
         {
           title: '💰 Exchange Rate Query',
           name: 'Rate',
-          url: 'https://tools.nya.run/rate',
+          url: '/rate',
           desc: 'Exchange rates provided on this website are from UnionPay System.',
         },
       ],
+      currentUrl: window.location.href.endsWith('/') ? window.location.href.split('/').slice(0, -1).join('/') : window.location.href,
     };
   },
   methods: {
