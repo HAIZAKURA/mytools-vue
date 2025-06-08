@@ -10,9 +10,7 @@
           <el-text line-clamp="2">{{ item.desc }}</el-text>
         </div>
         <div class="card-bottom">
-          <el-link :href="item.url" :underline="false">
-            <el-text type="info" size="small">{{ currentUrl + item.url }}</el-text>
-          </el-link>
+          <el-text type="info" size="small" @click="goTo(item.name)">{{ currentUrl + item.url }}</el-text>
         </div>
     </el-card>
   </el-space>
